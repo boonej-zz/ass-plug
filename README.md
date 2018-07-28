@@ -6,4 +6,9 @@
 /_/  |_(_)____(_)____(_)  /_/   /_____/\____/\____/   
 ```
 
+# Another Social Signin Plug(in)
+
+The goal of this project is to create a free, simple, social signin plugin 
+that will not bump into standard Wordpress features.
+
 

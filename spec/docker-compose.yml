@@ -1,0 +1,33 @@
+version: '2'
+services:
+  ass-db:
+    image: mysql:5.7.22
+    restart: always
+    hostname: steamlab-db
+    container_name: steamlab-db
+    volumes:
+      - ass-db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  ass-wp:
+    depends_on:
+      - ass-db
+    image: wordpress:4.9.6-php7.0-apache
+    restart: always
+    hostname: ass-wp
+    container_name: ass-wp
+    ports:
+      - "80:80"
+    environment:
+      WORDPRESS_DB_HOST: ass-db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+    working_dir: /var/www/html
+    volumes:
+      - ../ass-plug:/var/www/html/wp-content/plugins/ass-plug:rw
+volumes:
+  ass-db:
